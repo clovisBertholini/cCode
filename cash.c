@@ -12,40 +12,34 @@ int calculateChangeCoins(int n);
 
 int main(void)
 {
-	int numberOfCoins = 0, change;
-	change = getChangeValue();
-	numberOfCoins = calculateChangeCoins(change);
-	printf("%i\n", numberOfCoins);
+	printf("%i\n", calculateChangeCoins(getChangeValue()));
 }
 
 int getChangeValue(void)
 {
-	float changeValue, aux;
-	int roundedChangeValue;
+	float changeValue;	
 	do
 	{
 		printf("Type your change value:\n");
-		scanf("%f", &aux);
+		scanf("%f", &changeValue);
 	}
-	while (aux < 0);
-	changeValue = roundf(aux * 100);
-	roundedChangeValue = (int)changeValue;
-	return roundedChangeValue;
+	while (changeValue < 0);
+	return (int) roundf(changeValue * 100);
 }
 
 int calculateChangeCoins(int n)
 {
-	int coins = 0, coin25 = 0, coin10 = 0, coin5 = 0, coin1 = 0;
+	int coins = 0;
 	while (n >= 25)
 	{
-		coin25++;
+		coins++;
 		n -= 25;
 	}
 	if (n >= 10)
 	{
 		while (n >= 10)
 		{
-			coin10++;
+			coins++;
 			n -= 10;
 		}
 	}
@@ -53,11 +47,10 @@ int calculateChangeCoins(int n)
 	{
 		while (n >= 5)
 		{
-			coin5++;
+			coins++;
 			n -= 5;
 		}
 	}
-	coin1 = n;
-	coins = coin1 + coin5 + coin10 + coin25;
+	coins += n;
 	return coins;
 }
