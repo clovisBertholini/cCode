@@ -7,40 +7,56 @@
 #include <cs50.h>
 
 //funciton declaration
-void checkCardNum(long n);
+void checkCardNum(unsigned long long int n);
+unsigned long long int getCardNum(void);
 
 //main code
 int main (void)
 {
-	checkCardNumber(get_long("Type a credit card number: \n");
+	checkCardNum(getCardNum());
+}
+
+//functio getCardNum implementation
+unsigned long long int getCardNum(void)
+{
+	unsigned long long int num = 0;
+	do
+	{
+		printf("Type a credit card number: \n");
+		scanf("%llu", &num);
+		printf("num: %llu\n", num);
+	}
+	while (num < 0);
+	return num;
 }
 
 //function checkCardNum implementation
-void checkCardNum(long n)
+void checkCardNum(unsigned long long int n)
 {
 	int checkSumAcumulator = 0;
 	int digitsNumber = 0;
 	int nModTen = 0;
-	long cardNumber = n;
+	unsigned long long int cardNumber = n;
 
 	//checking the sum
 	while (n % 10 != n)
 	{
 		if (digitsNumber % 2 == 0) //if is an even digit, it runs block
 		{
-			nModten = n % 10;
-			n = (long)(n / 10);
-			checksumacumulator += nModTen;
+			nModTen = n % 10;
+			n = (unsigned long long int)(n / 10);
+			checkSumAcumulator += nModTen;
 			digitsNumber++;
 		}
 		else // if odd...
 		{
-			nModeTen = n % 10;
-			n = (long)(n / 10);
-			checkSumAcumulator += nModTen;
+			nModTen = n % 10;
+			n = (unsigned long long int)(n / 10);
+			checkSumAcumulator += ((nModTen * 2) % 10) + ((unsigned long long int) nModTen * 2 / 10);
 			digitsNumber++;
 		}
 	}
+
 	if (digitsNumber % 2 == 0)
 	{
 		checkSumAcumulator += n;
@@ -48,14 +64,15 @@ void checkCardNum(long n)
 	}
 	else
 	{
-		checkSumacumulator += ((n % 10 * 2) % 10) + ((int) n % 10 * 2 / 10);
+		checkSumAcumulator += ((n % 10 * 2) % 10) + ((int) n % 10 * 2 / 10);
 		digitsNumber++;
 	}
-	if (digitsNumber == 13 && n == 4 && checkSumAcumulator % 10 == 0);
+
+	if (digitsNumber == 13 && n == 4 && checkSumAcumulator % 10 == 0)
 	{
 		printf("VISA\n");
 	}
-	else if (digitsNumber == 15 && checkSumAcumulator % 10 == 0);
+	else if (digitsNumber == 15 && checkSumAcumulator % 10 == 0) 
 	{
 		if (n * 10 + nModTen == 35 || n * 10 + nModTen == 37)
 		{
@@ -66,7 +83,7 @@ void checkCardNum(long n)
 			printf("INVALID\n");
 		}
 	}
-	else if (digitsNumber == 16 && checkSumAcumulator % 10 == 0);
+	else if (digitsNumber == 16 && checkSumAcumulator % 10 == 0) 
 	{
 		if (n == 4)
 		{
