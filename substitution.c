@@ -38,22 +38,41 @@ int main(int argc, string argv[])
 //validateArgs implementation
 int validateArgs(int n, string v[])
 {
-	if (n != 2)
+	if (n != 2) //check numbers of arguments
 	{
 		printf("Usage: ./substitution key");
 		return 1;
 	}
 	else
 	{
-		if (strlen(v[1]) != 26)
+		if (strlen(v[1]) != 26) //check key's length
 		{
 			printf("Key must contain 26 characters.");
 			return 1;
 		}
-		else
+		for (int i = 0; i < strlen(v[1]); i++) //check key's invalid characters
 		{
-			return 0;
+			if (v[1][i] < 65 || v[1][i] > 90)
+			{
+				if (v[1][i] < 97 || v[1][i] > 122)
+				{
+					printf("Usage: ./substitution key");
+					return 1;
+				}
+			}
 		}
+		for (int i = 0; i < strlen(v[1]); i++) //check duplicate char in key
+		{
+			for (int j = 0; j < strlen(v[1]); j++)
+			{
+				if (v[1][i] == v[1][j] && i != j)
+				{
+					printf("Usage: ./substitution key");
+					return 1;
+				}
+			}
+		}
+		return 0;
 	}
 }
 //end validateArgs
