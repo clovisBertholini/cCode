@@ -111,13 +111,12 @@ void print_winner(void)
     }
     
 
-    for (int i = 0; i < candidate_count - 1; i++)
+    for (int i = 0; i < candidate_count; i++)
     {
         if (candidates[i].votes == candidates[candidate_count - 1].votes)
         {
             printf("%s\n", candidates[i].name);
         }
     }
-    printf("%s\n", candidates[candidate_count - 1].name);
 }
 
