@@ -3,7 +3,7 @@ My C codes. For study only.
 When we include at header <cs50.h>, we need link this library with -lcs50, like we do with <math.h> -lm, so:
 $ gcc -o file file.c -lm -lcs50 
 or if you install cs50.h in your computer, you can use 
-$ make file
+$ make [file]
 and file.c will be compiled as $ gcc -o file file.c -lm -lcs50 automaticly
 
 at: https://github.com/cs50/libcs50#cs50-library-for-c
