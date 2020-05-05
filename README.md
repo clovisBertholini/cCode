@@ -1,6 +1,6 @@
 # cCode
 My C codes. For study only.
-When we include at header <cs50.h>, we need link this library with -lcs50, like we do with <math.h> -lm, so:
+When we include at header <cs50.h>, we need link this library with <code>-lcs50</code>, like we do with <math.h> -lm, so:
 $ gcc -o file file.c -lm -lcs50 
 or if you install cs50.h in your computer, you can use 
 $ make [file]
