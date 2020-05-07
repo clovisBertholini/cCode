@@ -155,22 +155,23 @@ bool vote(int voter, int rank, string name)
 // Tabulate votes for non-eliminated candidates
 void tabulate(void)
 {
+    // find first options and comput it
     for (int i = 0; i < voter_count; i++)
     {
       if (candidates[i].eliminated == false)
       {
         candidates[preferences[i][0]].votes++;
       }
-      if (candidates[i].eliminated == true)
+    }
+    //find next options to comput it
+    for (int i = 0; i < voter_count; i++)
+    {
+      int j = 0;
+      while (candidates[preferences[i][j]].eliminated == true)
       {
-        for (int j = 1; j < candidate_count; j++)
-        {
-          if (candidates[preferences[i][j]].eliminated == false)
-          {
-            candidates[preferences[i][j]].votes++;
-          }
-        } 
+        j++;
       }
+      candidates[preferences[i][j]].votes++;
     }
 }
 
@@ -225,12 +226,12 @@ bool is_tie(int min)
 {
     // checks if was tied
     bool was_tied;
-    int c = 1;
-    while (candidates[0].votes == candidates[c].votes && c < candidate_count)
+    int c = 0;
+    while (candidates[c].votes == min)
     {
       c++;
     }
-    if (c > 1)
+    if (c == candidate_count)
     {
       was_tied = true;
     }
@@ -246,7 +247,7 @@ void eliminate(int min)
 {
     // take candidate(s) in last place
     int c = candidate_count - 1;
-    while (candidates[c].votes == min && c >=0)
+    while (candidates[c].votes == min)
     {
       candidates[c].eliminated = true;
       c--;
