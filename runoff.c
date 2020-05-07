@@ -179,8 +179,8 @@ bool print_winner(void)
 {
     // sorting candidates[]
     bool have_we_winner;
-    int swap;
-    while (swap > 0)
+    int swap = -1;
+    while (swap != 0)
     {
       int i;
       swap = 0;
@@ -225,15 +225,14 @@ bool is_tie(int min)
 {
     // checks if was tied
     bool was_tied;
-    int c = candidate_count - 2;
-    while (candidates[c].votes == min && c >= 0)
+    int c = 1;
+    while (candidates[0].votes == candidates[c].votes && c < candidate_count)
     {
-      c--;
+      c++;
     }
-    if (c == 0)
+    if (c > 1)
     {
       was_tied = true;
-      printf("true");
     }
     else
     {
