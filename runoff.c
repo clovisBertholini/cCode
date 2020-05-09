@@ -158,20 +158,20 @@ void tabulate(void)
     // find first options and comput it
     for (int i = 0; i < voter_count; i++)
     {
-      if (candidates[i].eliminated == false)
+      if (candidates[preferences[i][0]].eliminated == false)
       {
         candidates[preferences[i][0]].votes++;
       }
-    }
-    //find next options to comput it
-    for (int i = 0; i < voter_count; i++)
-    {
-      int j = 0;
-      while (candidates[preferences[i][j]].eliminated == true)
+      //find next options to comput it
+      else
       {
-        j++;
+        int j = 0;
+        while (candidates[preferences[i][j]].eliminated == true)
+        {
+          j++;
+        }
+        candidates[preferences[i][j]].votes++;
       }
-      candidates[preferences[i][j]].votes++;
     }
 }
 
