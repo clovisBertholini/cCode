@@ -7,13 +7,15 @@
 #include <cs50.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <string.h>
 
 //function factorial declaration
 unsigned long long int factorial(int n);
+bool validate(string s);
 
 int main(int argc, string argv[])
 {
-	if (argc != 2 || !isdigit(argv[1]))
+	if (argc != 2 || validate(argv[1]) == 1)
 	{
 		printf("Usage: factorial [natural number]");
 		return 1;
@@ -27,7 +29,25 @@ int main(int argc, string argv[])
 	}
 }
 
+bool validate(string s)
+{
+	bool only_numbers;
+	for (int i = 0; i < strlen(s); i++)
+	{
+		if (isdigit(s[i]))
+		{
+			only_numbers = true;
+		}
+		else
+		{
+			only_numbers = false;
+		}
+	}
+	return only_numbers;
+}
+
 unsigned long long int factorial(int n)
+
 {
 	if (n == 1)
 	{
