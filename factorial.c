@@ -17,15 +17,24 @@ int main(int argc, string argv[])
 {
 	if (argc != 2 || validate(argv[1]) == 1)
 	{
-		printf("Usage: factorial [natural number]");
+		printf("Usage: factorial [natural number]\n");
 		return 1;
 	}
 	else
 	{
-		int n = atoi(argv[1]); 
-		unsigned long long int result = factorial(n);
-		printf("%i! = %lli", n, result);
-		return 0;
+	    string s = argv[1];
+	    int n = atoi(s);
+	    if (n > 25)
+	    {
+	    	printf("This number is too large, use 0 > n < 26\n");
+	    	return 1;
+	    }
+	    else
+	    {
+			unsigned long long int result = factorial(n);
+			printf("%i! = %lli\n", n, result);
+			return 0;
+	    }
 	}
 }
 
@@ -34,7 +43,7 @@ bool validate(string s)
 	bool only_numbers;
 	for (int i = 0; i < strlen(s); i++)
 	{
-		if (isdigit(s[i]))
+		if (!isdigit(s[i]))
 		{
 			only_numbers = true;
 		}
@@ -47,7 +56,6 @@ bool validate(string s)
 }
 
 unsigned long long int factorial(int n)
-
 {
 	if (n == 1)
 	{
@@ -55,6 +63,6 @@ unsigned long long int factorial(int n)
 	}
 	else
 	{
-		return n * factorial(n);
+		return n * factorial(n - 1);
 	}
 }
