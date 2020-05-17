@@ -2,6 +2,7 @@
 //Date: May, 11, 2020.
 //Harvard X --> cs50 --> shorts --> recursion --> fibonacci.c
 //Takes a natural number and calculate its fibonacci number.
+//Multiples recursion cases.
 
 #include <stdio.h>
 #include <cs50.h>
