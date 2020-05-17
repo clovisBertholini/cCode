@@ -1,7 +1,7 @@
 //Author: Clovis Wanderley Bertholini Sobrinho
 //Date: May, 11, 2020.
 //Harvard X --> cs50 --> shorts --> recursion --> collatz.c
-//Takes a natural number and calculate its factorial.
+//Takes a natural number and calculate its collatz number.
 
 #include <stdio.h>
 #include <cs50.h>
@@ -17,16 +17,16 @@ int main(int argc, string argv[])
 {
 	if (argc != 2 || validate(argv[1]) == 1)
 	{
-		printf("Usage: factorial [natural number]\n");
+		printf("Usage: ./collatz [natural number]\n");
 		return 1;
 	}
 	else
 	{
 	    string s = argv[1];
 	    int n = atoi(s);
-	    if (n > 2E5)
+	    if (n > 2E5 || n == 0)
 	    {
-	    	printf("This number is too large, use 0 > n < 26\n");
+	    	printf("This number is too large or it is equal 0, use 0 > n < 26\n");
 	    	return 1;
 	    }
 	    else
