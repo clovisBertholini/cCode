@@ -10,7 +10,7 @@
 #include <string.h>
 
 //function factorial declaration
-int collatz(int n);
+int collatz(int n, int steps);
 bool validate(string s);
 
 int main(int argc, string argv[])
@@ -31,7 +31,7 @@ int main(int argc, string argv[])
 	    }
 	    else
 	    {
-			int result = collatz(n);
+			int result = collatz(n, 0);
 			printf("collatz(%i) = %i\n", n, result);
 			return 0;
 	    }
@@ -55,25 +55,20 @@ bool validate(string s)
 	return only_numbers;
 }
 
-int collatz(int n)
+int collatz(int n, int steps)
 {
-	int collatz_number = 0;
-	while ( true )
+	if (n == 1)
 	{
-		if (n == 1)
-		{
-			break;
-		}
-		else if (n % 2 == 0)
-		{
-			collatz_number++;
-			collatz(n / 2);
-		}
-		else
-		{
-			collatz_number++;
-			collatz(3 * n - 1);
-		}
+		return steps;
 	}
-	return collatz_number;
+	else if (n % 2 == 0)
+	{
+		steps++;
+		return collatz(n / 2, steps);
+	}
+	else
+	{
+		steps++;
+		return collatz(3 * n + 1, steps);
+	}
 }
