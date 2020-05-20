@@ -31,16 +31,18 @@ int main(void)
 
 void insertion_sort(int v[])
 {
+	int j = 0;
 	for (int i = 1; i < QTD; i++)
 	{
-		int j = 0;
-		int sorted = numbers[j];
-		while (numbers[i] < numbers[j])
+		j = i;
+		int sorted = v[j - 1];
+		int insert = v[j];
+		while (v[j] < v[j - 1] && j > 0)
 		{
-			numbers[i] = numbers[j];
+			v[j] = v[j - 1];
 			j--;
 		}
-		numbers[i] = sorted;
+		v[j] = insert;
 	}
 	//print sorted numbers
 	for (int i = 0; i < QTD; i++)
