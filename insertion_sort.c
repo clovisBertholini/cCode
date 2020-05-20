@@ -40,7 +40,6 @@ void insertion_sort(int v[])
 			numbers[i] = numbers[j];
 			j--;
 		}
-		numbers[j] = numbers[i];
 		numbers[i] = sorted;
 	}
 	//print sorted numbers
