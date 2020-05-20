@@ -37,7 +37,8 @@ void insertion_sort(int v[])
 		int sorted = numbers[j];
 		while (numbers[i] < numbers[j])
 		{
-			j++;
+			numbers[i] = numbers[j];
+			j--;
 		}
 		numbers[j] = numbers[i];
 		numbers[i] = sorted;
