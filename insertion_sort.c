@@ -35,7 +35,6 @@ void insertion_sort(int v[])
 	for (int i = 1; i < QTD; i++)
 	{
 		j = i;
-		int sorted = v[j - 1];
 		int insert = v[j];
 		while (v[j] < v[j - 1] && j > 0)
 		{
