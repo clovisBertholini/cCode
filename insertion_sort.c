@@ -24,7 +24,7 @@ int main(void)
 		printf("\n");
 	}
 	printf("\n");
-	//sort numbers array with bubble sort algorithm
+	//sort numbers array with insertion sort algorithm
 	insertion_sort(numbers);
 	return 0;
 }
