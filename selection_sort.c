@@ -31,8 +31,22 @@ int main(void)
 
 void selection_sort(int v[])
 {
-	//TODO
-	//print sorted numbers
+	int j = 1;
+	int k = 0;
+	while (j < QTD)
+	{
+		int selected;
+		//TODO SELECT LOWER ITEM
+		//insert selected item to first position on unsorted part
+		while (k > j - 1)
+		{
+			v[k] = v[k - 1];
+			k--;
+		}
+		v[j - 1] = selected;
+		j++;
+	}
+	//print numbers sorted
 	for (int i = 0; i < QTD; i++)
 	{
 		printf("%i", v[i]);
