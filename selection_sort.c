@@ -36,7 +36,19 @@ void selection_sort(int v[])
 	while (j < QTD)
 	{
 		int selected;
-		//TODO SELECT LOWER ITEM
+		for (int i = 0; i < QTD; i++)
+		{
+			while (j < QTD)
+			{
+				if (v[i] < v[j])
+				{
+					selected = v[i];
+					break;
+				}
+				else
+				{
+					selected = v[j];
+					j++;
 		//insert selected item to first position on unsorted part
 		while (k > j - 1)
 		{
