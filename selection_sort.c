@@ -16,7 +16,7 @@ int main(void)
 	int numbers[QTD];
        	//populate numbers array
 	for (int i = 0; i < QTD; i++)
-		numbers[i] = random(); 
+		numbers[i] = rand(); 
 	//print numbers unsorted
 	for (int i = 0; i < QTD; i++)
 	{
@@ -31,24 +31,28 @@ int main(void)
 
 void selection_sort(int v[])
 {
-	int j = 0;
 	int selected;
+	int sorted = 0;
 	for (int i = 0; i < QTD; i++)
 	{
-		j = i + 1;
+		int j = sorted;
 		while (j < QTD)
 		{
-			if (v[i] < v[j])
+			if (v[i] <= v[j])
 			{
 				j++;
 			}
 			else
 			{
-				selected = v[j];
-				v[j] = v[i];
-				v[i] = selected;
 				break;
 			}
+		}
+		if (j == QTD)
+		{
+			sorted++;
+			selected = v[i];
+			v[i] = v[j];
+			v[j] = selected;
 		}
 	}
 	//print numbers sorted
