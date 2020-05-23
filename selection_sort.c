@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const int QTD = 5;
+const int QTD = 15;
 
 //functions declarations
 void selection_sort(int v[]);
@@ -31,32 +31,25 @@ int main(void)
 
 void selection_sort(int v[])
 {
-	int j = 1;
-	int k = 0;
-	while (j < QTD)
+	int j = 0;
+	int selected;
+	for (int i = 0; i < QTD; i++)
 	{
-		int selected;
-		for (int i = 0; i < QTD; i++)
+		j = i + 1;
+		while (j < QTD)
 		{
-			while (j < QTD)
+			if (v[i] < v[j])
 			{
-				if (v[i] < v[j])
-				{
-					selected = v[i];
-					break;
-				}
-				else
-				{
-					selected = v[j];
-					j++;
-		//insert selected item to first position on unsorted part
-		while (k > j - 1)
-		{
-			v[k] = v[k - 1];
-			k--;
+				j++;
+			}
+			else
+			{
+				selected = v[j];
+				v[j] = v[i];
+				v[i] = selected;
+				break;
+			}
 		}
-		v[j - 1] = selected;
-		j++;
 	}
 	//print numbers sorted
 	for (int i = 0; i < QTD; i++)
