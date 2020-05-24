@@ -32,28 +32,29 @@ int main(void)
 void selection_sort(int v[])
 {
 	int selected;
-	int sorted = 0;
-	for (int i = 0; i < QTD; i++)
+	int unsorted = 0;
+	while (unsorted < QTD)
 	{
-		int j = sorted;
-		while (j < QTD)
+		int i, j;
+		for (i = unsorted; i < QTD; i++)
 		{
-			if (v[i] <= v[j])
+			j = unsorted;
+			while (j < QTD)
 			{
+				if (v[i] <= v[j])
+				{
 				j++;
-			}
-			else
-			{
-				break;
+				}
+				else
+				{
+					selected = v[j];
+					break;
+				}
 			}
 		}
-		if (j == QTD)
-		{
-			sorted++;
-			selected = v[i];
-			v[i] = v[j];
-			v[j] = selected;
-		}
+		v[j] = v[i];
+		v[i] = selected;
+		unsorted++;
 	}
 	//print numbers sorted
 	for (int i = 0; i < QTD; i++)
@@ -61,4 +62,5 @@ void selection_sort(int v[])
 		printf("%i", v[i]);
 		printf("\n");
 	}
+	system("pause");
 }
