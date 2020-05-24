@@ -35,25 +35,15 @@ void selection_sort(int v[])
 	int unsorted = 0;
 	while (unsorted < QTD)
 	{
-		int i, j;
-		for (i = unsorted; i < QTD; i++)
+		for (int i = QTD - 1; i >= unsorted; i--)
 		{
-			j = unsorted;
-			while (j < QTD)
+			if (v[i + 1] < v[i])
 			{
-				if (v[i] <= v[j])
-				{
-				j++;
-				}
-				else
-				{
-					selected = v[j];
-					break;
-				}
+				selected = v[i];
+				v[i] = v[i + 1];
+				v[i + 1] = selected;	
 			}
-		}
-		v[j] = v[i];
-		v[i] = selected;
+		}	
 		unsorted++;
 	}
 	//print numbers sorted
