@@ -9,14 +9,16 @@
 const int QTD = 15;
 
 //functions declarations
-void selection_sort(int v[]);
+int merge_sort(int v[]);
 
 int main(void)
 {
 	int numbers[QTD];
-       	//populate numbers array
+       	
+	//populate numbers array
 	for (int i = 0; i < QTD; i++)
 		numbers[i] = rand(); 
+	
 	//print numbers unsorted
 	for (int i = 0; i < QTD; i++)
 	{
@@ -24,19 +26,25 @@ int main(void)
 		printf("\n");
 	}
 	printf("\n");
-	//sort numbers array with selection sort algorithm
-	selection_sort(numbers);
-	return 0;
-}
+	
+	//sort numbers array with merge sort algorithm
+	merge_sort(numbers);
 
-void selection_sort(int v[])
-{
-	//TODO
 	//print numbers sorted
 	for (int i = 0; i < QTD; i++)
 	{
 		printf("%i", v[i]);
 		printf("\n");
 	}
-	system("pause");
+	return 0;
+}
+
+int merge_sort(int v[])
+{
+	//TODO
+	if (i = 1)
+	{}
+	else
+	{
+		merge_sort(	
 }
