@@ -10,12 +10,12 @@ const int QTD = 15;
 
 //functions declarations
 void merge_sort(int v[], int a, int b);
-void merge(int v[], int a, int mid, int mid1, int b);
+void merge(int v[], int a, int mid, int b);
 
 int main(void)
 {
 	int numbers[QTD];
-       	
+       	int x[QTD];
 	//populate numbers array
 	for (int i = 0; i < QTD; i++)
 		numbers[i] = rand(); 
@@ -30,6 +30,13 @@ int main(void)
 	
 	//sort numbers array with merge sort algorithm
 	merge_sort(numbers, 0, QTD); 
+
+	//print numbers sorted
+	for (int i = 0; i < QTD; i++)
+	{
+		printf("%i", numbers[i]);
+		printf("\n");
+	}
 	return 0;
 }
 
@@ -37,25 +44,21 @@ void merge_sort(int v[], int a, int b)
 {
 	//TODO
 	int mid = (a + b) / 2;
-	if (v[a] == v[b])
-	{
-		break;
-	}
-	else (v[a] < v[b])
+	if (a < b)
 	{
 		merge_sort(v, a, mid);
 		merge_sort(v, mid + 1, b);
-		merge(v, a, mid, mid + 1, b);
+		merge(v, a, mid, b);
 	}
 }
 
-void merge(int v[], int a, int mid, int mid1, int b)
+void merge(int v[], int a, int mid, int b)
 {
-	int x[b];
-	int i = 0;
-	int j = 0;
-	int k = 0;
-	while (i < mid && j < b)
+	int x[QTD];
+	int i = a;
+	int j = mid + 1;
+	int k = a;
+	while (i <= mid && j <= b)
 	{
 		if (v[i] < v[j])
 		{
@@ -69,23 +72,26 @@ void merge(int v[], int a, int mid, int mid1, int b)
 		}
 		k++;
 	}
-	while (i < mid)
+	if (j > b)
 	{
-		x[k] = v[i];
-		i++;
-		k++;
+		while (i <= mid)
+		{
+			x[k] = v[i];
+			i++;
+			k++;
+		}
 	}
-	while (j < b)
+	else
 	{
-		x[k] = v[j];
-		j++;
-		k++;
+		while (j <= b)
+		{
+			x[k] = v[j];
+			j++;
+			k++;
+		}
 	}
-
-	//print numbers sorted
-	for (int i = 0; i < QTD; i++)
+	for (k = a; k <= b; k++)
 	{
-		printf("%i", x[i]);
-		printf("\n");
+		v[k] = x[k];
 	}
 }
