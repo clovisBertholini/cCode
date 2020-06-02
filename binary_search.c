@@ -15,7 +15,7 @@ int binary_search(int v[], int n, int a, int b);
 
 int main(void)
 {
-    int x = 288; //rand();
+    int x = 23282; //rand();
     int numbers[MAX];
     for (int i = 0; i < MAX; i++)
     {
@@ -108,18 +108,18 @@ void merge(int v[], int a, int mid, int b)
 
 int binary_search(int v[], int n, int a, int b)
 {
-    if (n == v[(b - a) / 2])
+    if (n == v[a + (b - a) / 2])
     {
         return 1;
     }
-    else if (n < v[(b - a) / 2] && a != b)
+    else if (n < v[a + (b - a) / 2] && a != b)
     {
-        b = (b - a) / 2;
+        b = a + (b - a) / 2;
         binary_search(v, n, a, b);
     }
-    else if (n > v[(b - a) / 2] && a != b)
+    else if (n > v[a + (b - a) / 2] && a != b)
     {
-        a = (b - a) / 2;
+        a = a + (b - a) / 2;
         binary_search(v, n, a, b);
     }
     else
