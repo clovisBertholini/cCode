@@ -8,7 +8,7 @@
 
 const int MAX = 15;
 
-int binary_search(int v[], int n);
+int binary_search(int v[], int n, int a, int b);
 
 int main(void)
 {
@@ -18,7 +18,7 @@ int main(void)
     {
         numbers[i] = rand();
     }
-    int result = binary_search(numbers, x);
+    int result = binary_search(numbers, x, 0, MAX - 1);
     if (result == 1)
     {
         printf("The number %i exists in array", x);
@@ -28,4 +28,27 @@ int main(void)
         printf("The number %i not exists in array", x);
     }
     return 0;
+}
+
+int binary_search(int v[], int n, int a, int b)
+{
+    if (n == v[(b - a) / 2])
+    {
+        return 1;
+    }
+    else if (n < v[(b - a) / 2])
+    {
+        b = (b - a) / 2;
+        binary_search(v, n, a, b);
+    }
+    else if (n > v[(b - a) / 2])
+    {
+        a = (b - a) / 2;
+        binary_search(v, n, a, b);
+    }
+    else
+    {
+        return 0;
+    }
+    
 }
