@@ -1,3 +1,4 @@
+/* Dev: Clovis Wanderley Bertholini Sobrinho*/
 #include <stdio.h>
 #define UPPER 300
 #define LOWER 0
