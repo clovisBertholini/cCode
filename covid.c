@@ -9,6 +9,25 @@ void menuPrincipal(void);
 void criarFicha();
 void acrescentarRelato();
 
+struct servidor{
+	char nome[120];
+	char cargo[12];
+	char lotacao[40];
+	char codArea[3];
+	char fone[10];
+}; typedef struct servidor Servidor;
+
+struct data{
+	char dia[3];
+	char mes[3];
+	char ano[5];
+}; typedef struct data Data;
+
+struct relatoDoServidor{
+	Data data;
+	char relato[255];
+}; typedef struct reladoDoServidor RelatoDoServidor;
+
 int main(void){
     menuPrincipal();
     return 0;
