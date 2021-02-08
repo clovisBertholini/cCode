@@ -6,9 +6,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// declaracao de constantes
-const int NUM_SERVIDORES = 150;
-
 // definicao das structs
 // armazena dados do servidor
 struct servidor{ 
@@ -118,6 +115,24 @@ void criarFicha(){
 // inicio da funcao registra ficha do servidor
 void registraFicha(Servidor fichaServidor){
     system("clear");
+    /*char nomeArquivo[120];
+    int i = 0;
+    while (fichaServidor.nome[i] != ' '){
+	nomeArquivo[i] = fichaServidor.nome[i];
+    }*/
+    FILE *arquivo;
+    arquivo = fopen(fichaServidor.nome, "w");
+    if (arquivo == NULL){
+	printf("Erro na abertura do arquivo, tente novamente!");
+	exit(1);
+    }
+    else{
+	fprintf(arquivo, "Ficha do Servidor\n");
+	fprintf(arquivo, "Servidor: %s\n", fichaServidor.nome);
+	fprintf(arquivo, "Cargo: %s\n", fichaServidor.cargo);
+	fprintf(arquivo, "Fone: (%s) %s\n", fichaServidor.codArea, fichaServidor.fone);
+    }
+    fclose(arquivo);
     printf("\n\tRegistro incluido com sucesso!\n");
     system("sleep 3");
     system("clear");
