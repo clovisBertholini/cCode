@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 // definicao das structs
 // armazena dados do servidor
@@ -27,13 +28,14 @@ struct data{
 struct relatoDoServidor{
 	Data data;
 	char relato[255];
-}; typedef struct reladoDoServidor RelatoDoServidor;
+}; typedef struct relatoDoServidor RelatoDoServidor;
 
 // prototipos das funcoes
 void menuPrincipal();
 void criarFicha();
 void acrescentarRelato();
 void registraFicha(Servidor fichaServidor);
+void registraRelato(char nomeArquivo[], RelatoDoServidor sintomas);
 
 // inicio da funcao main
 int main(void){
@@ -78,14 +80,14 @@ void criarFicha(){
         system("clear");
         printf("\n\tCriar Ficha do Servidor\n");
         printf("\n\tServidor: ");
-        scanf("%s", &fichaServidor.nome);
+        scanf("%s", fichaServidor.nome); 
 	printf("\n\tCargo: ");
-	scanf("%s", &fichaServidor.cargo);
+	scanf("%s", fichaServidor.cargo);
         printf("\n\tFone... ");
 	printf("\n\n\tCodigo de Area: ");
-	scanf("%s", &fichaServidor.codArea);
+	scanf("%s", fichaServidor.codArea);
 	printf("\n\tNumero: ");
-	scanf("%s", &fichaServidor.fone);	
+	scanf("%s", fichaServidor.fone);	
 	getchar();
 	do{
 	    system("clear");
@@ -115,15 +117,11 @@ void criarFicha(){
 // inicio da funcao registra ficha do servidor
 void registraFicha(Servidor fichaServidor){
     system("clear");
-    /*char nomeArquivo[120];
-    int i = 0;
-    while (fichaServidor.nome[i] != ' '){
-	nomeArquivo[i] = fichaServidor.nome[i];
-    }*/
     FILE *arquivo;
     arquivo = fopen(fichaServidor.nome, "w");
     if (arquivo == NULL){
 	printf("Erro na abertura do arquivo, tente novamente!");
+	printf("Saindo do programa...");
 	exit(1);
     }
     else{
@@ -142,6 +140,77 @@ void registraFicha(Servidor fichaServidor){
 
 // inicio da funcao acrescenta relato do servidor
 void acrescentarRelato(){
-    system("clear");
-    printf("\n\tRelato do Servidor\n");
-} // fim da funcao acrecenta relato do servidor
+    RelatoDoServidor sintomas;
+    char nomeArquivo[120];
+    char opcao;
+    do{
+        system("clear");
+        printf("\n\tAcrescentar Relato do Servidor");
+        printf("\n\tDigite o nome do servidor: ");
+        scanf("%s", nomeArquivo);
+        printf("\n\tEntre com a data do relato...");
+        printf("\n\tDia: ");
+        scanf("%s", sintomas.data.dia);
+        printf("\n\tMês: ");
+        scanf("%s", sintomas.data.mes);
+        printf("\n\tAno: ");
+        scanf("%s", sintomas.data.ano);
+        printf("\n\tRelato do Servidor: ");
+        scanf("%s", sintomas.relato);
+	getchar();
+	do{
+	    printf("\n\tServidor: %s", nomeArquivo);
+	    printf("\n\tData: %s/%s/%s", sintomas.data.dia, sintomas.data.mes, sintomas.data.ano);
+	    printf("\n\tRelato: %s", sintomas.relato);
+	    printf("\n\n\tConfirma a inclusao dos dados acima S/N? ");
+	    scanf("%c", &opcao);
+	    if (opcao == 'S' || opcao == 's'){
+	        registraRelato(nomeArquivo, sintomas);
+		break;
+	    }
+	    else if (opcao == 'N' || opcao == 'n'){
+		break;
+	    }
+	    else{
+		system("clear");
+		printf("\n\tEscolha S ou N\n");
+	        system("sleep 3");
+	    }
+	    getchar();
+        }while (1);
+	printf("Deseja cadastrar outro relato para %s S/N? ", nomeArquivo);
+	scanf("%s", &opcao);
+	do{
+	    if (opcao == 'S' || opcao == 's'){
+	        continue;
+	    }
+	    else if (opcao == 'N' || opcao == 'n'){
+	        menuPrincipal();
+	        break;
+	    }
+	    else{
+		system("clear");
+		printf("\n\tEscolha S ou N\n");
+	        system("sleep 3");
+	    }
+	    getchar();
+	}while (1);
+	getchar();
+    }while (1);
+} // fim da funcao acrescenta relato do servidor
+
+void registraRelato(char nomeArquivo[], RelatoDoServidor sintomas){
+    FILE *arquivo;
+    arquivo = fopen(nomeArquivo, "a");
+    if (arquivo == NULL){
+	    printf("arquivo não encontrado, tente novamente!");
+	    printf("Saindo do programa...");
+    }
+    else{
+        fprintf(arquivo, "==========================================================");
+	fprintf(arquivo, "\n\tData: %s/%s/%s", sintomas.data.dia, sintomas.data.mes, sintomas.data.ano);
+	fprintf(arquivo, "\n\tRelato:");
+	fprintf(arquivo, "\n\t%s\n\n", sintomas.relato);
+    }
+    fclose(arquivo);
+} // fim da funcao registra relato do servidor
