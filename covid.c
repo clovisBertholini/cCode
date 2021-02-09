@@ -35,7 +35,7 @@ void menuPrincipal();
 void criarFicha();
 void acrescentarRelato();
 void registraFicha(Servidor fichaServidor);
-void registraRelato(char nomeArquivo[], RelatoDoServidor sintomas);
+void registraRelato(char nomeArquivo[], RelatoDoServidor sintomas, int count);
 
 // inicio da funcao main
 int main(void){
@@ -143,7 +143,7 @@ void acrescentarRelato(){
     RelatoDoServidor sintomas;
     char nomeArquivo[120];
     char opcao;
-    char paciente[120];
+    char paciente[120]; // necessario a criacao desta variavel, pois a nomeArquivo apaga apos o loop ???
     system("clear");
     printf("\n\tAcrescentar Relato do Servidor");
     printf("\n\tDigite o nome do servidor: ");
@@ -158,16 +158,26 @@ void acrescentarRelato(){
         printf("\n\tAno: ");
         scanf("%s", sintomas.data.ano);
         printf("\n\tRelato do Servidor: ");
-        scanf("%s", sintomas.relato);
+	int i = 0;
+	int aux;
 	getchar();
+        while ((aux = getchar()) != '\n'){
+            sintomas.relato[i] = aux;
+	    i++;
+	}
 	do{
 	    printf("\n\tServidor: %s", paciente);
 	    printf("\n\tData: %s/%s/%s", sintomas.data.dia, sintomas.data.mes, sintomas.data.ano);
-	    printf("\n\tRelato: %s", sintomas.relato);
+	    printf("\n\tRelato:\n\t");
+	    int count = i;
+	    i = 0;
+	    for (i = 0; i < count; i++){
+	        printf("%c", sintomas.relato[i]);
+	    }
 	    printf("\n\n\tConfirma a inclusao dos dados acima S/N? ");
 	    scanf("%c", &opcao);
 	    if (opcao == 'S' || opcao == 's'){
-	        registraRelato(paciente, sintomas);
+	        registraRelato(paciente, sintomas, count);
 		break;
 	    }
 	    else if (opcao == 'N' || opcao == 'n'){
@@ -201,7 +211,7 @@ void acrescentarRelato(){
     }while (1);
 } // fim da funcao acrescenta relato do servidor
 
-void registraRelato(char nomeArquivo[], RelatoDoServidor sintomas){
+void registraRelato(char nomeArquivo[], RelatoDoServidor sintomas, int count){
     FILE *arquivo;
     arquivo = fopen(nomeArquivo, "a");
     if (arquivo == NULL){
@@ -211,8 +221,11 @@ void registraRelato(char nomeArquivo[], RelatoDoServidor sintomas){
     else{
         fprintf(arquivo, "==========================================================");
 	fprintf(arquivo, "\n\tData: %s/%s/%s", sintomas.data.dia, sintomas.data.mes, sintomas.data.ano);
-	fprintf(arquivo, "\n\tRelato:");
-	fprintf(arquivo, "\n\t%s\n\n", sintomas.relato);
+	fprintf(arquivo, "\n\tRelato:\n\t");
+	for (int i = 0; i < count; i++){
+	    fprintf(arquivo, "%c", sintomas.relato[i]);
+	}
+	fprintf(arquivo, "\n\n");
     }
     fclose(arquivo);
 } // fim da funcao registra relato do servidor
