@@ -143,10 +143,12 @@ void acrescentarRelato(){
     RelatoDoServidor sintomas;
     char nomeArquivo[120];
     char opcao;
+    char paciente[120];
     system("clear");
     printf("\n\tAcrescentar Relato do Servidor");
     printf("\n\tDigite o nome do servidor: ");
     scanf("%s", nomeArquivo);
+    strcpy(paciente, nomeArquivo);
     do{
         printf("\n\tEntre com a data do relato...");
         printf("\n\tDia: ");
@@ -159,13 +161,13 @@ void acrescentarRelato(){
         scanf("%s", sintomas.relato);
 	getchar();
 	do{
-	    printf("\n\tServidor: %s", nomeArquivo);
+	    printf("\n\tServidor: %s", paciente);
 	    printf("\n\tData: %s/%s/%s", sintomas.data.dia, sintomas.data.mes, sintomas.data.ano);
 	    printf("\n\tRelato: %s", sintomas.relato);
 	    printf("\n\n\tConfirma a inclusao dos dados acima S/N? ");
 	    scanf("%c", &opcao);
 	    if (opcao == 'S' || opcao == 's'){
-	        registraRelato(nomeArquivo, sintomas);
+	        registraRelato(paciente, sintomas);
 		break;
 	    }
 	    else if (opcao == 'N' || opcao == 'n'){
@@ -178,7 +180,7 @@ void acrescentarRelato(){
 	    }
 	    getchar();
         }while (1);
-	printf("\n\tDeseja cadastrar outro relato para %s S/N? ", nomeArquivo);
+	printf("\n\tDeseja cadastrar outro relato para %s S/N? ", paciente);
 	scanf("%s", &opcao);
 	do{
 	    if (opcao == 'S' || opcao == 's'){
