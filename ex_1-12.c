@@ -4,7 +4,7 @@ int main(void)
     int c;
     int n = 0;
     int b = ' ';
-    while ((c = getchar()) != EOF && n <= 100)
+    while ((c = getchar()) != '\n' && n <= 100)
     {
         if ((c == ' ' || c == '\n' || c == '\t') && (b != ' ' && b != '\n' && b != '\t'))
             printf("\n");
