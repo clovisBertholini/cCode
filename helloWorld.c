@@ -1,4 +1,3 @@
-/Clovis Wanderley Bertholini Sobrinho
 //My first code in C
 //04.15.2020
 #include <stdio.h>
